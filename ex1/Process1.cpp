@@ -1,11 +1,10 @@
-#include "SharedMemoryBuffer.h"
 #include <boost/interprocess/shared_memory_object.hpp>
 #include <boost/interprocess/mapped_region.hpp>
-#include <iostream >
+#include "SharedMemoryBuffer.h"
+#include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <boost/interprocess/sync/interprocess_semaphore.hpp>
 
 using namespace boost::interprocess;
 
@@ -27,7 +26,8 @@ int main() {
 	//create a shared memory buffer in memory
 	shared_memory_buffer *my = new (addr) shared_memory_buffer;
 
-	while (true) {
+	int N=0;
+	while (N<=10) {
 		//wait until the written number gets executed
 		my->writer.wait();
 
@@ -35,10 +35,12 @@ int main() {
 		std::cout << "Square: " << my->value << "\n";
 
 		//create the original value
-		my->value = 7;
+		my->value = N;
 
 		//reader can execute written number
 		my->reader.post();
+	
+		N+=1;
 	}
 
 	return 0;

@@ -20,7 +20,8 @@ int main() {
 	//Obtain the shared structure
 	shared_memory_buffer * my = static_cast<shared_memory_buffer*>(addr);
 
-	while (true) {
+	int N=0;
+	while (N<=10) {
 		//wait until a number gets available
 		my->reader.wait();
 
@@ -32,6 +33,8 @@ int main() {
 
 		//writer can print square
 		my->writer.post();
+
+		N+=1;
 	}
 	return 0;
 }
