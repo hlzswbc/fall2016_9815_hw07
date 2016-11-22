@@ -40,7 +40,7 @@ int main() {
 		//reader can execute written number
 		my->reader.post();
 	
-		N+=1;
+		N+=1；
 	}
 
 	return 0;
