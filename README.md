@@ -1,1 +1,3 @@
-# fall2016_9815_hw07
+README.md
+9815 HW 07
+By Chendi Zhang and Bingcheng Wang
